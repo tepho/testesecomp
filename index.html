@@ -229,80 +229,9 @@
           <br><br>
         </div>
     </div>
-
+    <!-- aqui todos palestrantes dinamicamente -->
     <div class="row">
-      <ul class="ch-grid">
-          <li>
-            <div class="ch-item ch-imge-1">
-              <div class="ch-info">
-                <h3>Warley Gramacho da Silva</h3>
-                <p><a target="_blank" href="http://lattes.cnpq.br/2536790818552672">Currículo Lattes</a></p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="ch-item ch-imge-2">
-              <div class="ch-info">
-                <h3>Sérgio Francisco da Silva</h3>
-                <p><a target="_blank" href="http://lattes.cnpq.br/9061098995683609">Currículo Lattes</a></p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="ch-item ch-imge-3">
-              <div class="ch-info">
-                <h3>Andreas Kneip</h3>
-                <p><a target="_blank" href="http://lattes.cnpq.br/8210194326778291">Currículo Lattes</a></p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="ch-item ch-imge-5">
-              <div class="ch-info">
-                <h3>Daniel de Oliveira</h3>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="ch-item ch-imge-6">
-              <div class="ch-info">
-                <h3>Jeferson Morais</h3>
-              </div>
-            </div>
-          </li>
-      </ul>
-      <ul class="ch-grid">
-          <li>
-            <div class="ch-item ch-imge-10">
-              <div class="ch-info">
-                <h3>Amanda Louzada</h3>
-                <p><a target="_blank" href="http://lattes.cnpq.br/5919390438270569">Currículo Lattes</a></p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="ch-item ch-imge-4">
-              <div class="ch-info">
-                <h3>Antônio Marcos</h3>
-                <p><a target="_blank" href="http://lattes.cnpq.br/3428806429521675">Currículo Lattes</a></p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="ch-item ch-imge-8">
-              <div class="ch-info">
-                <h3>Paulo Cruz</h3>
-              </div>
-            </div>
-          </li><li>
-            <div class="ch-item ch-imge-9">
-              <div class="ch-info">
-                <h3>Felipe Cícero</h3>
-                <p><a target="_blank" href="http://lattes.cnpq.br/1158507076875189">Currículo Lattes</a></p>
-              </div>
-            </div>
-          </li>          
-        </ul>
+      
     </div>      
     </div>
   </section>
@@ -667,8 +596,12 @@
       console.log(caccomp_bd);
 
       // pega div que deve conter todos os palestrantes
-      var palestrantes = $("#palestrantes").find(".ch-grid").last();
-      
+      var palestrantes = $("#palestrantes").find(".row").find(".ch-grid").last();
+      if(palestrantes.length == 0)
+      {
+        $("#palestrantes").find(".row").append( $("<ul>").addClass("ch-grid") );
+        palestrantes = $("#palestrantes").find(".row").find(".ch-grid").last();
+      }
       
       console.log(palestrantes);
       var contador_palestrantes = 0;
@@ -697,6 +630,7 @@
           divInfo.append(h3, p);          
           
           var divItem = $("<div>").addClass("ch-item ").addClass(class_id).append(divInfo);
+          divItem.css("background-image","url("+caccomp_bd["pessoas"][pessoa]["imagem-perfil"]+")" );
           
           var html = $("<li>").append(divItem);
           
