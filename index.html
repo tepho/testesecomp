@@ -662,9 +662,55 @@
         bgColor: "#0e4e79",
         spinner: "spinner2"
       });
+
+
+      console.log(caccomp_bd);
+
+      // pega div que deve conter todos os palestrantes
+      var palestrantes = $("#palestrantes").find(".ch-grid").last();
+      
+      
+      console.log(palestrantes);
+      var contador_palestrantes = 0;
+
+      for(pessoa in caccomp_bd["pessoas"])
+      {
+        if(caccomp_bd["pessoas"][pessoa]["minicursos"].length > 0 || caccomp_bd["pessoas"][pessoa]["palestras"].length > 0)
+        {
+          if(contador_palestrantes % 5 == 0)
+          {
+            //abre ou fecha
+          }
+          var html;
+          var class_id = "ch-imge-"+pessoa;
+          
+          var a = $("<a>").append("Currículo Lattes");
+          a.attr("href", caccomp_bd["pessoas"][pessoa]["github"]);
+          a.attr("target","_blank");
+          
+          var p = $("<p>").append(a);
+          
+          var h3 = $("<h3>").append(caccomp_bd["pessoas"][pessoa]["nome"]);
+          
+          var divInfo = $("<div>").addClass("ch-info");
+          
+          divInfo.append(h3, p);          
+          
+          var divItem = $("<div>").addClass("ch-item ").addClass(class_id).append(divInfo);
+          
+          var html = $("<li>").append(divItem);
+          
+          palestrantes.append(html);
+          
+          contador_palestrantes += 1;          
+        }
+      }
+
     });
 
-    console.log(caccomp_bd);
+    
+
+
   </script>
 
 </body>
