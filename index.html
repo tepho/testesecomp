@@ -592,28 +592,20 @@
         spinner: "spinner2"
       });
 
-
-      console.log(caccomp_bd);
-
       // pega div que deve conter todos os palestrantes
       var palestrantes = $("#palestrantes").find(".row").find(".ch-grid").last();
+      var row;
       if(palestrantes.length == 0)
       {
-        $("#palestrantes").find(".row").append( $("<ul>").addClass("ch-grid") );
+        row = $("#palestrantes").find(".row");
+        row.append( $("<ul>").addClass("ch-grid") );
         palestrantes = $("#palestrantes").find(".row").find(".ch-grid").last();
       }
       
-      console.log(palestrantes);
-      var contador_palestrantes = 0;
-
       for(pessoa in caccomp_bd["pessoas"])
       {
         if(caccomp_bd["pessoas"][pessoa]["minicursos"].length > 0 || caccomp_bd["pessoas"][pessoa]["palestras"].length > 0)
-        {
-          if(contador_palestrantes % 5 == 0)
-          {
-            //abre ou fecha
-          }
+        {          
           var html;
           var class_id = "ch-imge-"+pessoa;
           
@@ -635,8 +627,13 @@
           var html = $("<li>").append(divItem);
           
           palestrantes.append(html);
-          
-          contador_palestrantes += 1;          
+                    
+          //sempre que tem 4 li dentro de um ul ele cria um novo elemento irmão pra colocar mais li
+          if(palestrantes.find("li").length == 4)
+          {
+            row.append( $("<ul>").addClass("ch-grid") );
+            palestrantes = $("#palestrantes").find(".row").find(".ch-grid").last();
+          }          
         }
       }
 
