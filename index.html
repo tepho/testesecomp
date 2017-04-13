@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="css/medals.css">
 
   <!-- Custom Fonts -->
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
   
 
   <!-- Circle -->
@@ -609,12 +609,33 @@
           var html;
           var class_id = "ch-imge-"+pessoa;
           
-          var a = $("<a>").append("Currículo Lattes");
-          a.attr("href", caccomp_bd["pessoas"][pessoa]["github"]);
-          a.attr("target","_blank");
+          var a = "";
+
+          //contato do palestrante
+          if(caccomp_bd["pessoas"][pessoa]["lattes"]){
+            a = $("<a>");
+            a.attr("target","_blank");
+            a.append("Currículo Lattes");
+            a.attr("href", caccomp_bd["pessoas"][pessoa]["lattes"]);
+          }else if(caccomp_bd["pessoas"][pessoa]["github"]){
+            a = $("<a>");
+            a.attr("target","_blank");
+            a.append("github");
+            a.attr("href", caccomp_bd["pessoas"][pessoa]["github"]);
+          }else if(caccomp_bd["pessoas"][pessoa]["facebook"]){
+            a = $("<a>");
+            a.attr("target","_blank");
+            a.append("facebook");
+            a.attr("href", caccomp_bd["pessoas"][pessoa]["facebook"]);
+          }
+
+          var p = ""; 
           
-          var p = $("<p>").append(a);
-          
+          if(a != "")
+          {
+            a = $("<p>").append(a);
+          }
+
           var h3 = $("<h3>").append(caccomp_bd["pessoas"][pessoa]["nome"]);
           
           var divInfo = $("<div>").addClass("ch-info");
