@@ -241,19 +241,21 @@
 
   </section>
   <section id="cronograma" class="bg-globo">
-    <div class="container" id="programacao_content"><div class="row">
+  <div class="container" id="programacao_content"><div class="row">
     <div class="col-lg-8 col-lg-offset-2 text-center">
       <h2 class="ft-personalizada"><strong><em>Cronograma</em></strong></h2>
     </div>
   </div>
-  <ul class="nav nav-tabs">
+
+  <ul class="nav nav-tabs" id="tabs">
     <li class="active"><a href="#tab_extra" data-toggle="tab">1° Dia</a></li>
     <li><a href="#tab_a" data-toggle="tab">2° Dia</a></li>
     <li><a href="#tab_b" data-toggle="tab">3° Dia</a></li>
     <li><a href="#tab_c" data-toggle="tab">4° Dia</a></li>
     <li><a href="#tab_d" data-toggle="tab">Mini cursos</a></li>
   </ul>
-  <div class="tab-content">
+
+  <div class="tab-content" id="content">
     <div class="tab-pane active" id="tab_extra">
       <h3><strong>Segunda-feira dia 17/10/2016</strong></h3><br><table class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
         <thead>
@@ -587,6 +589,69 @@
 
     
   <script>
+    function cronograma(){      
+      var tabs = $("#cronograma").find("#tabs").first();
+      var content = $("#cronograma").find("#content").first();
+      
+      var i = 0;
+      var needClass = true;
+      for(day in caccomp_bd["dias"])
+      {
+        console.log(day);
+        var id = "tab_" + i;
+
+        if(needClass)
+        {
+          tabs.append("<li class='active'><a href='#"+id+"' data-toggle='tab'>"+ day+"</a></li>");
+          needClass = false;
+        }
+        else
+        {
+          tabs.append("<li><a href='#"+id+"' data-toggle='tab'>"+ day+"</a></li>");          
+        }
+
+        var inString = "";
+
+        for(act in caccomp_bd["dias"][day])
+        {
+          var horario = caccomp_bd["dias"][day][act]["horario_inicio"];
+          horario += " - ";
+          horario += caccomp_bd["dias"][day][act]["horario_fim"];
+          var titulo = caccomp_bd["dias"][day][act]["titulo"];
+          var local = "";
+          //Abertura oficial da Semana Nacional de Ciência e Tecnologia
+          // console.log(caccomp_bd["dias"][day][act]);
+          inString += "<tr><td>"+horario+"</td>\
+          <td><p><strong>"+titulo+"</strong></p>Local:"+local+"</td>\
+          </tr>";
+        }
+        
+        var is_active = "";
+
+        if(needClass){
+          needClass = false;
+          is_active = "active";
+        }
+          
+        var panel = '<div class="tab-pane '+is_active+'" id="'+id+'">\
+        <h3><strong>'+ titulo +'</strong></h3><br>\
+        <table class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">\
+        <thead>\
+          <tr>\
+            <th>Horário</th>\
+            <th>Programação</th>\
+          </tr>\
+        </thead>\
+        <tbody><tr>'+inString+'</tr></tbody>\
+        </table>\
+        </div>';
+
+        content.append(panel);
+        
+      }
+    }
+
+
     $(document).ready(function() {
       $(".fakeloader").fakeLoader({
         timeToHide: 500,
@@ -659,6 +724,11 @@
           }          
         }
       }
+
+
+
+      //carrega cronograma
+      cronograma();
 
     });
 
