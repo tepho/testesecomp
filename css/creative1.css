@@ -74,7 +74,7 @@ p{
 }
 .bg-lol {
   color: #fff;
-  background-color: #000; 
+  background-color: #000;
 }
 
 .img-profile {
@@ -225,7 +225,8 @@ header {
   background-position: center;
   background-image: url('../img/logo3.png');
   text-align: center;
-  background-color: #0e4e79;
+  background-color: #1d4c81;
+  /*background-color: #0e4e79;*/
   color: white;
 }
 header .header-content {
@@ -492,4 +493,3 @@ img::-moz-selection {
 body {
   webkit-tap-highlight-color: #222222;
 }
-
