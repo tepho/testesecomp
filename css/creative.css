@@ -32,7 +32,7 @@ a:focus {
   color: #eb3812;
 }
 .selecao {
-  color:green;  
+  color:green;
   text-decoration:none
 }
 
@@ -494,4 +494,3 @@ img::-moz-selection {
 body {
   webkit-tap-highlight-color: #222222;
 }
-
