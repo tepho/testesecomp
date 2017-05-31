@@ -347,9 +347,10 @@
           var titulo = caccomp_bd["dias"][day][act]["titulo"];
           var local = "";
           var idPalestrante = caccomp_bd["dias"][day][act]["pessoas"];
-          if(idPalestrante){
-              var palestrante = "";
+          var palestrante = "";
 
+          if(idPalestrante){
+              palestrante = "";
               for(var index in idPalestrante){
                   palestrante += caccomp_bd["pessoas"][idPalestrante[index]]["nome"];
                   if(index > 0)
