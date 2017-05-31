@@ -346,8 +346,19 @@
           horario += caccomp_bd["dias"][day][act]["horario_fim"];
           var titulo = caccomp_bd["dias"][day][act]["titulo"];
           var local = "";
+          var idPalestrante = caccomp_bd["dias"][day][act]["pessoas"];
+          if(idPalestrante){
+              var palestrante = "";
+
+              for(var index in idPalestrante){
+                  palestrante += caccomp_bd["pessoas"][idPalestrante[index]]["nome"];
+                  if(index > 0)
+                    palestrante += ",";
+              }
+              console.log(palestrante);
+          }
           inString += "<tr><td>"+horario+"</td>\
-          <td><p><strong>"+titulo+"</strong></p>Local:"+local+"</td>\
+          <td><p><strong>"+titulo+"</strong></p><p>Local:"+local+"</p>Responsaveis: "+ palestrante +"</td>\
           </tr>";
         }
 
