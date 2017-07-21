@@ -896,78 +896,7 @@
 
 
   <script>
-    function cronograma(){
-
-      var tabs = $("#cronograma").find("#tabs").first();
-      var content = $("#cronograma").find("#content").first();
-
-      var i = 0;
-      var needClass = true;
-      for(day in caccomp_bd["dias"])
-      {
-        var id = "tab_" + i;
-
-        if(needClass)
-        {
-          tabs.append("<li class='active'><a href='#"+id+"' data-toggle='tab'>"+day+"</a></li>");
-        }
-        else
-        {
-          tabs.append("<li><a href='#"+id+"' data-toggle='tab'>"+day+"</a></li>");
-        }
-
-        var inString = "";
-
-        for(act in caccomp_bd["dias"][day])
-        {
-          var horario = caccomp_bd["dias"][day][act]["horario_inicio"];
-          horario += " - ";
-          horario += caccomp_bd["dias"][day][act]["horario_fim"];
-          var titulo = caccomp_bd["dias"][day][act]["titulo"];
-          var local = "";
-          var idPalestrante = caccomp_bd["dias"][day][act]["pessoas"];
-          var palestrante = "";
-
-          if(idPalestrante){
-              palestrante = "";
-              for(var index in idPalestrante){
-                  palestrante += caccomp_bd["pessoas"][idPalestrante[index]]["nome"];
-                  if(index > 0)
-                    palestrante += ",";
-              }
-              console.log(palestrante);
-          }
-          inString += "<tr><td>"+horario+"</td>\
-          <td><p><strong>"+titulo+"</strong></p><p>Local:"+local+"</p>Responsaveis: "+ palestrante +"</td>\
-          </tr>";
-        }
-
-        var is_active = "";
-
-        if(needClass){
-          needClass = false;
-          is_active = "active";
-        }
-
-        var panel = '<div class="tab-pane '+is_active+'" id="'+id+'">\
-        <h3><strong>'+ day +'</strong></h3><br>\
-        <table class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">\
-        <thead>\
-          <tr>\
-            <th>Horário</th>\
-            <th>Programação</th>\
-          </tr>\
-        </thead>\
-        <tbody><tr>'+inString+'</tr></tbody>\
-        </table>\
-        </div>';
-
-        content.append(panel);
-        i+= 1;
-      }
-    }
-
-
+    
     $(document).ready(function() {
 
       $(".fakeloader").fakeLoader({
@@ -975,9 +904,6 @@
         bgColor: "white",
         spinner: "spinner2"
       });
-
-      //carrega cronograma
-      cronograma();
 
       // pega div que deve conter todos os palestrantes
       var palestrantes = $("#palestrantes").find(".row").find(".ch-grid").last();
