@@ -215,15 +215,16 @@ aside {
 }
 
 header {
-  position: relative;
+  /* position: relative; */
   width: 100%;
   min-height: auto;
+  display: flex;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
-  background-position: center;
-  background-image: url('../img/logo.png');
+  /* background-position: center; */
+  /* background-image: url('../img/evento_IFTO_UFT_banner_modelo.png'); */
   background-size: 85% auto;
   background-repeat: no-repeat;
   text-align: center;
@@ -232,12 +233,24 @@ header {
   color: white;
 }
 header .header-content {
-  position: relative;
+  display: flex;
+  align-items: center;
+  /* position: relative; */
   text-align: center;
   background-size: cover;
-  padding: 160px 15px 160px;
+  /* padding: 160px 0; */
   width: 100%;
 }
+
+header .header-content .header-content-inner img{
+  margin-top: 20%;
+  /* margin-top: 10%; */
+  display: flex;
+  align-items: center;
+  /* width: 100%; */
+  height: 100%;
+}
+
 header .header-content .header-content-inner h1 {
   font-weight: 700;
   text-transform: uppercase;
@@ -297,6 +310,7 @@ header .header-content .header-content-inner p {
   max-width: 400px;
   margin: 50px auto 0;
 }
+
 @media (min-width: 992px) {
   .service-box {
     margin: 20px auto 0;
@@ -492,6 +506,6 @@ img::-moz-selection {
   color: white;
   background: transparent;
 }
-body {
-  webkit-tap-highlight-color: #222222;
-}
+/* body {
+  /* webkit-tap-highlight-color: #222222; */
+/* }  */
